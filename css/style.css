@@ -1,0 +1,90 @@
+/* YOUR CUSTOM STYLES */
+
+html,
+body {
+    height: 100%;
+}
+
+
+/* Navigation*/
+
+.navbar {
+    background-color: #4285F4;
+}
+
+.top-nav-collapse {
+    background-color: #1976D2;
+}
+
+footer.page-footer {
+    background-color: #1976D2;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #4285F4;
+    }
+}
+
+.scrolling-navbar {
+    -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
+    transition: background .5s ease-in-out, padding .5s ease-in-out;
+}
+
+
+/* Carousel*/
+
+.carousel {
+    height: 75%;
+}
+
+@media (max-width: 776px) {
+    .carousel {
+        height: 100%;
+    }
+}
+
+.carousel-item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100%;
+}
+
+
+/*Caption*/
+.list-group-item.active {
+    background-color: #33b5e5;
+    border-color: #33b5e5
+}
+
+.list-group-item:not(.active) {
+    color: #222;
+}
+
+.list-group-item:not(.active):hover {
+    color: #666;
+}
+
+main {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+}
+
+.widget-wrapper {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 2rem;
+}
+
+footer.page-footer {
+    background-color: #1976D2;
+    margin-top: 2rem;
+}
+
+.card {
+    margin-bottom: 10px;
+}

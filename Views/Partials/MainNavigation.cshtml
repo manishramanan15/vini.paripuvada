@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@{ var selection = CurrentPage.Site().Children.Where("Visible"); }
+
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item @(CurrentPage.Name == "Home" ? "active" : null)">
+        <a class="nav-link" href="/">
+            Home
+            @if (CurrentPage.Name == "Home")
+            {<span class="sr-only">(current)</span>}
+        </a>
+    </li>
+
+
+    @if (selection.Any())
+    {
+
+        foreach (var item in selection)
+        {
+            if (item.DocumentTypeAlias == "landingPage")
+            {
+                <li class="nav-item @(item.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
+                    <a class="nav-link" href="@item.Url">
+                        @item.Name
+                        @if (item.IsAncestorOrSelf(CurrentPage))
+                        {
+                            <span class="sr-only">(current)</span>
+                        }
+                    </a>
+                </li>
+            }
+        }
+    }
+</ul>

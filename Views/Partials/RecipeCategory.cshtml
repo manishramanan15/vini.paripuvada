@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@*
+    This snippet lists the items from a Multinode tree picker, using the pickers default settings.
+    Content Values stored as xml.
+
+    To get it working with any site's data structure, set the selection equal to the property which has the
+    multinode treepicker (so: replace "PropertyWithPicker" with the alias of your property).
+*@
+
+@{
+    var selection = CurrentPage.Site().FirstChild("landingPage").Children("recipeCategory").Where("Visible");
+}
+<h4>Categories:</h4>
+<br>
+<div class="list-group">
+    @foreach (var item in selection)
+    {
+        <a 
+            class="list-group-item @(item.IsAncestorOrSelf(CurrentPage) ? "active" : null)" 
+            href="@item.Url">
+            @item.Name
+        </a>
+    }
+</div>
