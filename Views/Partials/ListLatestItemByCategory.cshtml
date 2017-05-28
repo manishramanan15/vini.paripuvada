@@ -1,0 +1,94 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@{
+
+    var contentIds = new List<int>();
+
+    if (CurrentPage.DocumentTypeAlias == "landingPage") {
+
+        var selection = Model.Content.Site().FirstChild("landingPage");
+        var categories = selection.Children("recipeCategory");
+        //get the first latest
+        foreach (var category in categories)
+        {
+            var item = category.Children()
+                        .Where(x => x.IsVisible())
+                        .OrderBy("CreateDate desc")
+                        .First();
+
+            contentIds.Add(item.Id);
+
+        }
+    }
+    if (CurrentPage.DocumentTypeAlias == "recipeCategory") {
+        var pages = CurrentPage.Children.Where("Visible");
+        foreach (var p in pages) {
+            contentIds.Add(p.Id);
+        }
+    }
+
+}
+
+@for (int i = 0; i < contentIds.Count; i++)
+{
+    var page = Umbraco.Content(contentIds[i]);
+    <!--Post-->
+    <div class="post-wrapper wow fadeIn" data-wow-delay="0.2s">
+        <!--Post data-->
+        <h1 class="h1-responsive">@page.pageTitle <small class="text-muted">@page.pageSubtitle</small></h1>
+        <h5>Written on @page.createDate</h5>
+
+        <br>
+
+        <!--Featured image -->
+        <div class="view overlay hm-white-light z-depth-1-half">
+            <img src="@page.image" class="img-fluid " alt="">
+            <div class="mask">
+            </div>
+        </div>
+
+        <br>
+
+        <!--Post excerpt-->
+        <p>
+            @page.pageDescription
+        </p>
+
+        <!--"Read more" button-->
+        <a href="@page.Url" class="btn btn-info">Read more</a>
+    </div>
+    <!--/.Post-->
+
+    <hr>
+}
+@*
+    <!--Pagination-->
+    <nav>
+        <ul class="pagination flex-center pg-dark  wow fadeIn" data-wow-delay="0.2s">
+            <!--Arrow left-->
+            <li class="page-item">
+                <a class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item active"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">4</a></li>
+            <li class="page-item"><a class="page-link">5</a></li>
+
+            <!--Arrow right-->
+            <li class="page-item">
+                <a class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--/.Pagination-->
+*@
