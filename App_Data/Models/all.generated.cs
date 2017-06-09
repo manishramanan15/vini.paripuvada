@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "ecb0b2d9d97200fb")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.10")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "eccaa4fdb2d4ecc2")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
 // FILE: models.generated.cs
@@ -63,6 +63,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Home, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Profile Page
+		///</summary>
+		[ImplementPropertyType("profilePage")]
+		public IEnumerable<IPublishedContent> ProfilePage
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("profilePage"); }
 		}
 
 		///<summary>
@@ -146,12 +155,30 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Page Subtitle
+		///</summary>
+		[ImplementPropertyType("pageSubtitle")]
+		public string PageSubtitle
+		{
+			get { return this.GetPropertyValue<string>("pageSubtitle"); }
+		}
+
+		///<summary>
 		/// Page Title
 		///</summary>
 		[ImplementPropertyType("pageTitle")]
 		public string PageTitle
 		{
 			get { return this.GetPropertyValue<string>("pageTitle"); }
+		}
+
+		///<summary>
+		/// Slider: Slider Images
+		///</summary>
+		[ImplementPropertyType("slider")]
+		public IEnumerable<IPublishedContent> Slider
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("slider"); }
 		}
 	}
 
@@ -231,6 +258,59 @@ namespace Umbraco.Web.PublishedContentModels
 		public string Title
 		{
 			get { return this.GetPropertyValue<string>("title"); }
+		}
+	}
+
+	/// <summary>Profile</summary>
+	[PublishedContentModel("profile")]
+	public partial class Profile : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "profile";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Profile(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Profile, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Full Name
+		///</summary>
+		[ImplementPropertyType("fullName")]
+		public string FullName
+		{
+			get { return this.GetPropertyValue<string>("fullName"); }
+		}
+
+		///<summary>
+		/// Passion
+		///</summary>
+		[ImplementPropertyType("passion")]
+		public string Passion
+		{
+			get { return this.GetPropertyValue<string>("passion"); }
+		}
+
+		///<summary>
+		/// Photo
+		///</summary>
+		[ImplementPropertyType("photo")]
+		public Umbraco.Web.Models.ImageCropDataSet Photo
+		{
+			get { return this.GetPropertyValue<Umbraco.Web.Models.ImageCropDataSet>("photo"); }
 		}
 	}
 
