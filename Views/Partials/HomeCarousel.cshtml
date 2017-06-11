@@ -13,8 +13,11 @@
                     .Where(x => x.IsVisible())
                     .OrderBy("CreateDate desc")
                     .First();
+        var image = item.GetProperty("image");
 
-        contentIds.Add(item.Id);
+        if (!String.IsNullOrEmpty(image.Value.ToString())) {
+            contentIds.Add(item.Id);
+        }
 
     }
 
@@ -45,7 +48,7 @@
         @for (int i = 0; i < contentIds.Count; i++)
         {
             var page = Umbraco.Content(contentIds[i]);
-            <div class="carousel-item @(i==0? "active" : null) view hm-black-light" style="background-image: url('@page.image'); background-repeat: no-repeat; background-size: cover;">
+            <div class="carousel-item @(i==0? "active" : null) view hm-black-light" style="background-image: url('@page.image?quality=90'); background-repeat: no-repeat; background-size: cover;">
                 <!-- Caption -->
                 <div class="full-bg-img flex-center white-text">
                     <ul class="animated fadeIn col-md-12">

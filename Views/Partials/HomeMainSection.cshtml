@@ -1,0 +1,55 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@*
+    This snippet creates links for every single page (no matter how deep) below
+    the page currently being viewed by the website visitor, displayed as nested unordered html lists.
+*@
+
+@{ 
+    var selection = Model.Content.Site().FirstChild("landingPage");
+    var categories = selection.Children("recipeCategory");
+
+    var contentIds = new List<int>();
+
+    //get the first latest
+    foreach (var category in categories)
+    {
+        var item = category.Children().Where("showOnHomePage == true").First();
+
+        contentIds.Add(item.Id);
+
+    }
+
+}
+
+@for (int i = 0; i < contentIds.Count; i++)
+{
+    var page = Umbraco.Content(contentIds[i]);
+
+    <div class="col-lg-4">
+        <!--Card-->
+        <div class="card wow fadeIn" data-wow-delay="0.2s">
+
+            <!--Card image-->
+            <div class="view overlay hm-white-slight">
+                <img src="@page.image?quality=90" class="img-fluid" alt="">
+                <a href="#">
+                    <div class="mask"></div>
+                </a>
+            </div>
+            <!--/.Card image-->
+            <!--Card content-->
+            <div class="card-block">
+                <!--Title-->
+                <h4 class="card-title">@page.pageTitle</h4>
+                <!--Text-->
+                <p class="card-text">@page.pageDescription</p>
+                <a href="page.Url" class="btn btn-info">Read more</a>
+            </div>
+            <!--/.Card content-->
+
+        </div>
+        <!--/.Card-->
+    </div>
+}
