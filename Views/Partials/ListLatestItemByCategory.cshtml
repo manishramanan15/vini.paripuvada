@@ -17,14 +17,23 @@
                         .OrderBy("CreateDate desc")
                         .First();
 
-            contentIds.Add(item.Id);
+            var image = item.GetProperty("image");
 
+            if (!String.IsNullOrEmpty(image.Value.ToString()))
+            {
+                contentIds.Add(item.Id);
+            }
         }
     }
     if (CurrentPage.DocumentTypeAlias == "recipeCategory") {
         var pages = CurrentPage.Children.Where("Visible");
         foreach (var p in pages) {
-            contentIds.Add(p.Id);
+            var image = p.GetProperty("image");
+            if (!String.IsNullOrEmpty(image.Value.ToString()))
+            {
+                contentIds.Add(p.Id);
+            }
+
         }
     }
 
