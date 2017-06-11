@@ -76,15 +76,15 @@
                             </div>
 
 
-                            @if (!String.IsNullOrEmpty(profile.faceBook))
+                            if (!String.IsNullOrEmpty(profile.faceBook))
                             {
                                 <a class="icons-sm ins-ic" href="@profile.faceBook"><i class="fa fa-facebook"></i></a>
                             }
-                            @if (!String.IsNullOrEmpty(profile.instagram))
+                            if (!String.IsNullOrEmpty(profile.instagram))
                             {
                                 <a class="icons-sm ins-ic" href="@profile.instagram"><i class="fa fa-instagram"></i></a>
                             }
-                            @if (!String.IsNullOrEmpty(profile.twitter))
+                            if (!String.IsNullOrEmpty(profile.twitter))
                             {
                                 <a class="icons-sm ins-ic" href="@profile.twitter"><i class="fa fa-twitter"></i></a>
                             }
