@@ -40,26 +40,9 @@
                 <section class="section">
                     <!--First row-->
                     <div class="row">
-
                         @CurrentPage.GetGridHtml("content", "grid")
-
-                        <div class="col-md-8">
-                            <!--/Post text-->
-                            <div class="text-center wow fadeIn" data-wow-delay="0.3s" style="visibility: hidden; animation-delay: 0.3s; animation-name: none;">
-                                <h3 class="h3-responsive">Do you want to share?</h3>
-                                <!--Facebook-->
-                                <a href="https://www.facebook.com/mdbootstrap" target="_blank" class="btn-floating btn-small btn-fb waves-effect waves-light"><i class="fa fa-facebook"> </i></a>
-                                <!--Twitter-->
-                                <a href="https://twitter.com/MDBootstrap" target="_blank" class="btn-floating btn-small btn-tw waves-effect waves-light"><i class="fa fa-twitter"> </i></a>
-                                <!--Google +-->
-                                <a href="https://plus.google.com/u/0/+Mdbootstrap" target="_blank" class="btn-floating btn-small btn-gplus waves-effect waves-light"><i class="fa fa-google-plus"> </i></a>
-                            </div>
-
-                        </div>
-
                     </div>
                     <!--/First row-->
-
                 </section>
                 <!--/.Section: Post-->
 
@@ -91,6 +74,21 @@
                                 <!--Description-->
                                 <p>@profile.Passion</p>
                             </div>
+
+
+                            @if (!String.IsNullOrEmpty(profile.faceBook))
+                            {
+                                <a class="icons-sm ins-ic" href="@profile.faceBook"><i class="fa fa-facebook"></i></a>
+                            }
+                            @if (!String.IsNullOrEmpty(profile.instagram))
+                            {
+                                <a class="icons-sm ins-ic" href="@profile.instagram"><i class="fa fa-instagram"></i></a>
+                            }
+                            @if (!String.IsNullOrEmpty(profile.twitter))
+                            {
+                                <a class="icons-sm ins-ic" href="@profile.twitter"><i class="fa fa-twitter"></i></a>
+                            }
+
                         }
                     </div>
                     <!--/Card-->
