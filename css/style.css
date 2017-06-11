@@ -83,6 +83,7 @@ main {
 footer.page-footer {
     background-color: #1976D2;
     margin-top: 2rem;
+    padding-top:0px;
 }
 
 .card {
