@@ -15,9 +15,15 @@
     //get the first latest
     foreach (var category in categories)
     {
-        var item = category.Children().Where("showOnHomePage == true").First();
+        //var item = category.Children().Where("showOnHomePage == true").First();
+        var item = category.Children().First();
+        var image = item.GetProperty("image");
 
-        contentIds.Add(item.Id);
+        if (!String.IsNullOrEmpty(image.Value.ToString()))
+        {
+            contentIds.Add(item.Id);
+        }
+
 
     }
 
