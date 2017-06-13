@@ -40,7 +40,7 @@
                 var mediaItem = Umbraco.TypedMedia(selection[i].Id);
 
                 <div class="carousel-item @(i==0? "active" : null) carousel-item-left">
-                    <a href="#!"><img src="@mediaItem.Url?quality=90" alt="@mediaItem.Name" class="img-fluid"></a>
+                    <a href="#!"><img src="@mediaItem.Url?quality=50&width=1320" alt="@mediaItem.Name" class="img-fluid"></a>
                 
                 </div>
 
